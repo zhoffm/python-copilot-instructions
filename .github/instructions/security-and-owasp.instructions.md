@@ -74,9 +74,22 @@ Your primary directive is to ensure all Python code you generate, review, or ref
       return f.encrypt(data.encode())
   ```
 
-- **Secure Secret Management:** Never hardcode secrets. Use environment variables or secret managers.
+- **Secure Secret Management:** Never hardcode secrets. Use environment variables or secret managers. Pydantic-settings should be used for loading environment variables if using Pydantic
 
   ```python
+  # GOOD: Load using pydatic settings
+  from pydantic_settings import BaseSettings, SettingsConfigDict
+
+  class Settings(BaseSettings):
+    model_config = SettingsConfigDict(
+      env_file=".env",
+      env_file_encoding="utf-8",
+      case_sensitive=False,
+      extra="ignore"
+    )
+
+    api_key: str
+
   # GOOD: Load from environment
   import os
   from typing import Optional

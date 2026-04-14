@@ -27,7 +27,7 @@ It is **EXTREMELY important that you follow the instructions in the rule files v
    Don't ask to run the tests, just do it. If you are not sure how to run the tests, ask for help.
    You can also use `pytest-watch` to run the tests automatically when you change the code.
 
-4. Fix any linting errors (with ruff, black, mypy, etc.) and type checking warnings before going to the next step.
+4. Fix any linting errors with `ruff` and type checking warnings using `ty` before going to the next step.
 
 5. Ensure code coverage is maintained or improved. Use `pytest --cov` to check coverage.
 
@@ -36,8 +36,8 @@ When you see paths like `/[project]/features/[feature]/` in rules, replace [proj
 ## Python-specific guidelines
 
 - Use type hints for all function signatures and class attributes
-- Follow PEP 8 style guide (enforced by black and ruff)
-- Use dataclasses or Pydantic models for data structures
+- Follow PEP 8 style guide (enforced by ruff formatting and linting)
+- Use Pydantic models for data structures
 - Prefer composition over inheritance
 - Use context managers for resource management
 - Follow the Zen of Python principles

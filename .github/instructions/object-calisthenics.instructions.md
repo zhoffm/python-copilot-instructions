@@ -40,7 +40,7 @@ def process_orders(orders: List[Order]) -> List[ProcessedOrder]:
     return results
 ```
 
-### 2. Don't Use the ELSE Keyword
+### 2. Don't Use the ELSE Keyword with IF clauses
 
 Use early returns and guard clauses instead.
 

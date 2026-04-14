@@ -261,12 +261,12 @@ pytest --cov=src --cov-fail-under=80
 
 ## Async Testing
 
-Use pytest-asyncio for async code:
+Use pytest-anyio for async code:
 
 ```python
 import pytest
 
-@pytest.mark.asyncio
+@pytest.mark.anyio
 async def test_async_use_case():
     use_case = AsyncOrderUseCase()
     result = await use_case.execute(order_id)

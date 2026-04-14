@@ -11,14 +11,10 @@ This instruction file enforces Python coding standards based on PEP 8, type hint
 
 ## Code Formatting
 
-Use **Black** for automatic formatting and **Ruff** for linting.
+Use **Ruff** for automatic formatting and linting.
 
 ```toml
 # pyproject.toml
-[tool.black]
-line-length = 100
-target-version = ['py311']
-
 [tool.ruff]
 line-length = 100
 target-version = "py311"
@@ -182,7 +178,7 @@ Organize imports in this order:
 2. Third-party packages
 3. Local application imports
 
-Use isort or ruff for automatic sorting:
+Use ruff for automatic sorting:
 
 ```python
 # Standard library
@@ -344,7 +340,7 @@ customer = self._cache.get(customer_id) or repository.get_by_id(customer_id)
 
 ## Line Length
 
-Maximum 100 characters per line (configurable in black):
+Maximum 100 characters per line (configurable in Ruff):
 
 ```python
 # Good: readable within line limit
@@ -366,7 +362,7 @@ message = (
 ## Validation Checklist
 
 - [ ] All public functions have type hints
-- [ ] Code is formatted with Black
+- [ ] Code is formatted with Ruff
 - [ ] Imports are organized (stdlib, third-party, local)
 - [ ] Docstrings for public APIs
 - [ ] Enums for related constants

@@ -22,7 +22,6 @@ This instruction file enforces Clean Architecture principles in Python projects 
 
 ```python
 from dataclasses import dataclass
-from typing import Optional
 from datetime import datetime
 
 @dataclass(frozen=True)
@@ -148,7 +147,7 @@ async def apply_discount(
 
 - Use `typing.Protocol` for dependency inversion
 - All public methods must have type hints
-- Use `mypy` for static type checking
+- Use `ty` for static type checking
 
 ## Testing Strategy
 
