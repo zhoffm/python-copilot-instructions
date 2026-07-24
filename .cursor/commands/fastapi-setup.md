@@ -235,14 +235,16 @@ def test_create_order():
 
 ```bash
 # Install dependencies
-pip install fastapi uvicorn sqlalchemy pydantic
+uv add fastapi uvicorn sqlalchemy pydantic
 
 # Development mode with auto-reload
-uvicorn api.main:app --reload --host 0.0.0.0 --port 8000
+uv run uvicorn api.main:app --reload --host 0.0.0.0 --port 8000
 
 # Production
-uvicorn api.main:app --host 0.0.0.0 --port 8000 --workers 4
+uv run uvicorn api.main:app --host 0.0.0.0 --port 8000 --workers 4
 ```
+
+See [Python Tooling Execution](../rules/python-tooling-execution.mdc) — always run tools via `uv run` or an activated `uv`-managed venv, never `pip install` or `python -m`.
 
 ## Environment Variables
 

@@ -14,6 +14,7 @@ copilot-instructions/
 │   │   ├── follow-up-question.instructions.md
 │   │   ├── meta-instructions.instructions.md
 │   │   ├── object-calisthenics.instructions.md
+│   │   ├── python-tooling-execution.instructions.md  # NEW: uv-based tool/dependency policy
 │   │   ├── security-and-owasp.instructions.md        # NEW: OWASP security for Python
 │   │   └── unit-and-integration-tests.instructions.md
 │   ├── prompts/                     # Reusable prompts (4 files)
@@ -64,6 +65,7 @@ Located in `.github/instructions/`, these define **always-active** coding rules:
 - **object-calisthenics.instructions.md**: OOP design rules
 - **conventional-commits.instructions.md**: Commit message format
 - **follow-up-question.instructions.md**: AI asks questions before generating code
+- **python-tooling-execution.instructions.md**: Run every tool via `uv run <tool>` or an activated `uv`-managed venv — never `pip install` or `python -m <tool>`
 
 ### 3. Prompts
 
@@ -102,6 +104,7 @@ Activate in Copilot Chat:
 - ✅ **Dataclasses** and **Pydantic** for models
 - ✅ **Protocols** for dependency inversion
 - ✅ **Pre-commit hooks** instead of Husky
+- ✅ **uv** for environment and dependency management (`uv run <tool>` instead of `pip`/`python -m`)
 
 ### TDD Workflow
 
@@ -109,9 +112,9 @@ The main `.github/copilot-instructions.md` enforces:
 
 1. Consult relevant instruction files
 2. Write tests FIRST (TDD)
-3. Run `pytest` to verify
-4. Fix linting errors (Ruff, Black, mypy)
-5. Check coverage (`pytest --cov`)
+3. Run `uv run pytest` to verify
+4. Fix linting errors (Ruff, Black, mypy) via `uv run <tool>`
+5. Check coverage (`uv run pytest --cov`)
 
 ## Example Workflow
 
@@ -129,8 +132,8 @@ The main `.github/copilot-instructions.md` enforces:
    - Domain entities
    - Use case implementation
    - Repository interface
-6. **Copilot runs** `pytest` automatically
-7. **Copilot checks** Black/Ruff/mypy
+6. **Copilot runs** `uv run pytest` automatically
+7. **Copilot checks** Black/Ruff/mypy via `uv run <tool>`
 
 ## Customization
 
@@ -156,26 +159,28 @@ The main `.github/copilot-instructions.md` enforces:
 ### Run Tests
 
 ```bash
-pytest                           # Run all tests
-pytest tests/unit/               # Run unit tests only
-pytest --cov                     # With coverage
-pytest -v --tb=short             # Verbose with short traceback
+uv run pytest                    # Run all tests
+uv run pytest tests/unit/        # Run unit tests only
+uv run pytest --cov              # With coverage
+uv run pytest -v --tb=short      # Verbose with short traceback
 ```
 
 ### Format Code
 
 ```bash
-black .                          # Format all files
-ruff check --fix .               # Lint and auto-fix
-mypy src/                        # Type checking
+uv run black .                   # Format all files
+uv run ruff check --fix .        # Lint and auto-fix
+uv run mypy src/                 # Type checking
 ```
 
 ### Pre-commit
 
 ```bash
-pre-commit install               # Install hooks
-pre-commit run --all-files       # Run manually
+uv run pre-commit install         # Install hooks
+uv run pre-commit run --all-files # Run manually
 ```
+
+All commands above assume `uv`-managed tooling (see `python-tooling-execution.instructions.md`). Equivalently, activate `.venv` first and drop the `uv run` prefix — but never fall back to `python -m <tool>` or `pip install`.
 
 ## Learning Path
 

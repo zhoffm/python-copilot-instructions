@@ -36,6 +36,7 @@ This project provides a set of best practices, coding rules, and prompt instruct
 - 🐍 Python coding style with PEP 8 and type hints ([see instructions](.github/instructions/coding-style-python.instructions.md))
 - 🎨 Clean Architecture for Python ([see instructions](.github/instructions/clean-architecture.instructions.md))
 - 🔧 Pre-commit hooks setup for Python projects ([see prompts](.github/prompts/pre-commit-python.prompt.md))
+- 📦 `uv`-first tooling policy — `uv run <tool>` over `pip`/`python -m` ([see instructions](.github/instructions/python-tooling-execution.instructions.md))
 
 ## 📂 Repository Structure
 

@@ -7,7 +7,7 @@ applyTo: "**/*test*.py"
 
 ## Overview
 
-This instruction file defines testing standards using pytest for Python projects.
+This instruction file defines testing standards using pytest for Python projects. Run `pytest` (and any other tool below) via `uv run pytest` or with the `uv`-managed venv activated — see [Python Tooling Execution](./python-tooling-execution.instructions.md). Never use `python -m pytest`.
 
 ## Test Organization
 
@@ -253,10 +253,10 @@ Aim for high coverage but focus on meaningful tests:
 
 ```bash
 # Run with coverage
-pytest --cov=src --cov-report=html --cov-report=term
+uv run pytest --cov=src --cov-report=html --cov-report=term
 
 # Minimum coverage threshold
-pytest --cov=src --cov-fail-under=80
+uv run pytest --cov=src --cov-fail-under=80
 ```
 
 ## Async Testing
@@ -293,8 +293,8 @@ def test_large_data_processing():
     pass
 
 # Run specific markers
-# pytest -m "unit"
-# pytest -m "not slow"
+# uv run pytest -m "unit"
+# uv run pytest -m "not slow"
 ```
 
 ## Best Practices

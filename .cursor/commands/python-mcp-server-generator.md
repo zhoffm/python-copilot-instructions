@@ -4,7 +4,7 @@ Create a complete Model Context Protocol (MCP) server in Python with the followi
 
 ## Requirements
 
-1. **Project Structure**: Create a new Python project with proper structure using uv or standard setup
+1. **Project Structure**: Create a new Python project with proper structure using `uv`
 2. **Dependencies**: Include mcp[cli] package
 3. **Transport Type**: Choose between stdio (for local) or streamable-http (for remote)
 4. **Tools**: Create at least one useful tool with proper type hints
@@ -15,7 +15,7 @@ Create a complete Model Context Protocol (MCP) server in Python with the followi
 ### Project Setup
 
 - Initialize project with proper structure
-- Add MCP SDK: `uv add "mcp[cli]"` or `pip install "mcp[cli]"`
+- Add MCP SDK: `uv add "mcp[cli]"`
 - Create main server file (e.g., `server.py`)
 - Add `.gitignore` for Python projects
 - Configure for direct execution with `if __name__ == "__main__"`
@@ -151,8 +151,8 @@ if __name__ == "__main__":
 ## Testing Guidance
 
 - Explain how to run the server:
-  - stdio: `python server.py` or `uv run server.py`
-  - HTTP: `python server.py` then connect to `http://localhost:PORT/mcp`
+  - stdio: `uv run server.py`
+  - HTTP: `uv run server.py` then connect to `http://localhost:PORT/mcp`
 - Test with MCP Inspector: `uv run mcp dev server.py`
 - Install to Claude Desktop: `uv run mcp install server.py`
 - Include example tool invocations

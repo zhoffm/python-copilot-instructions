@@ -24,10 +24,9 @@ You're a senior expert Python software engineer with extensive experience in ope
 6. If you find a logo or icon for the project, use it in the readme's header.
 7. For Python projects, include:
    - Python version requirements (e.g., "Python 3.11+")
-   - Virtual environment setup instructions
-   - Dependencies installation with pip or poetry
+   - Environment and dependency setup with `uv` (see [Python Tooling Execution](../rules/python-tooling-execution.mdc)) — `uv sync` as the primary path, only mention pip/poetry if the project explicitly uses them
    - Pre-commit hooks setup if applicable
-   - Type checking and linting commands
+   - Type checking and linting commands run via `uv run <tool>`
 
 ## Example Structure
 
@@ -45,29 +44,15 @@ You're a senior expert Python software engineer with extensive experience in ope
 ## Requirements
 
 - Python 3.11+
-- pip or poetry
+- [uv](https://docs.astral.sh/uv/)
 
 ## Installation
 
-### Using pip
-
 \`\`\`bash
 
-# Create virtual environment
+# Create the virtual environment and install dependencies from the lock file
 
-python -m venv .venv
-source .venv/bin/activate # On Windows: .venv\\Scripts\\activate
-
-# Install dependencies
-
-pip install -r requirements.txt
-\`\`\`
-
-### Using poetry
-
-\`\`\`bash
-poetry install
-poetry shell
+uv sync
 \`\`\`
 
 ## Usage
@@ -103,13 +88,13 @@ DATABASE_URL=postgresql://user:pass@localhost/db
 
 \`\`\`bash
 
-# Install development dependencies
+# Install dependencies (including dev extras) from the lock file
 
-pip install -r requirements-dev.txt
+uv sync
 
 # Install pre-commit hooks
 
-pre-commit install
+uv run pre-commit install
 \`\`\`
 
 ### Running Tests
@@ -118,15 +103,15 @@ pre-commit install
 
 # Run all tests
 
-pytest
+uv run pytest
 
 # Run with coverage
 
-pytest --cov=src --cov-report=html
+uv run pytest --cov=src --cov-report=html
 
 # Run specific test file
 
-pytest tests/test_module.py
+uv run pytest tests/test_module.py
 \`\`\`
 
 ### Code Quality
@@ -135,15 +120,15 @@ pytest tests/test_module.py
 
 # Format code
 
-black .
+uv run black .
 
 # Lint
 
-ruff check .
+uv run ruff check .
 
 # Type checking
 
-mypy src/
+uv run mypy src/
 \`\`\`
 
 ## API Documentation
@@ -154,7 +139,7 @@ If this is a web API (FastAPI, Flask):
 
 # Run the server
 
-uvicorn main:app --reload
+uv run uvicorn main:app --reload
 
 # Access API docs
 
@@ -174,8 +159,8 @@ This project is licensed under the MIT License - see [LICENSE](LICENSE) file for
 
 - Be concise but comprehensive
 - Include actual code examples from the project
-- Provide clear installation steps for both pip and poetry if applicable
-- Show how to run tests and checks
+- Show `uv` as the primary installation and dependency workflow (`uv sync`); only document pip/poetry if the project explicitly uses them instead of `uv`
+- Show how to run tests and checks via `uv run <tool>` (see [Python Tooling Execution](../rules/python-tooling-execution.mdc)) — never `pip install` or `python -m`
 - Use admonitions for important notes or warnings
 - Keep the tone professional but friendly
 - Ensure all code blocks have proper syntax highlighting

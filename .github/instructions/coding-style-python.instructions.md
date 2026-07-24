@@ -11,7 +11,7 @@ This instruction file enforces Python coding standards based on PEP 8, type hint
 
 ## Code Formatting
 
-Use **Ruff** for automatic formatting and linting.
+Use **Ruff** for automatic formatting and linting. Run it (and every other tool referenced in this file) via `uv run ruff ...` or with the `uv`-managed venv activated — see [Python Tooling Execution](./python-tooling-execution.instructions.md).
 
 ```toml
 # pyproject.toml

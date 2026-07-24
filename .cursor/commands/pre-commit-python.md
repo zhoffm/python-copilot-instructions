@@ -4,12 +4,14 @@
 
 This prompt helps you set up pre-commit hooks for Python projects with black, ruff, mypy, and pytest.
 
+All commands use `uv` per [Python Tooling Execution](../rules/python-tooling-execution.mdc) — never `pip install` or `python -m`.
+
 ## Steps
 
 ### 1. Install pre-commit
 
 ```bash
-pip install pre-commit
+uv add --dev pre-commit
 ```
 
 ### 2. Create .pre-commit-config.yaml
@@ -48,7 +50,7 @@ repos:
     hooks:
       - id: pytest
         name: pytest
-        entry: pytest
+        entry: uv run pytest
         language: system
         pass_filenames: false
         always_run: true
@@ -58,17 +60,17 @@ repos:
 ### 3. Install hooks
 
 ```bash
-pre-commit install
+uv run pre-commit install
 ```
 
 ### 4. Run manually (optional)
 
 ```bash
 # Run on all files
-pre-commit run --all-files
+uv run pre-commit run --all-files
 
 # Run on staged files
-pre-commit run
+uv run pre-commit run
 ```
 
 ## Configuration Files
