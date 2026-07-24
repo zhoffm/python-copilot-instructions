@@ -17,9 +17,8 @@ This project provides a set of best practices, coding rules, and prompt instruct
    git clone https://github.com/your-username/copilot-instructions.git
    ```
 2. **Explore the instructions**
-   - Check the `.github/instructions/` folder for coding rules and best practices.
-   - Review prompt files in `.github/prompts/` for AI guidance.
-   - Read the `copilot-instructions.md` file for Copilot-specific and Python-specific workflow rules.
+   - **Using GitHub Copilot?** Check the `.github/instructions/` folder for coding rules and best practices, review prompt files in `.github/prompts/` for AI guidance, and read `.github/copilot-instructions.md` for Copilot-specific and Python-specific workflow rules.
+   - **Using Cursor?** The same content is mirrored under `.cursor/rules/` (equivalent to `.github/instructions/`) and `.cursor/commands/` (equivalent to `.github/prompts/` + `.github/chatmodes/`), with `AGENTS.md` at the repo root as the Cursor equivalent of `copilot-instructions.md`.
 3. **Apply the rules**
    - Follow the documented standards in your projects.
    - Use these files to configure Copilot or other AI tools for consistent code generation.
@@ -44,6 +43,9 @@ This project provides a set of best practices, coding rules, and prompt instruct
 - `.github/prompts/` — Prompt files for Copilot and AI tools
 - `.github/chatmodes/` — Chatmode files to configure Copilot/AI behavior (e.g. `architect`)
 - `.github/copilot-instructions.md` — Main Copilot and Python workflow rules
+- `.cursor/rules/` — Cursor equivalent of `.github/instructions/` (`.mdc` files)
+- `.cursor/commands/` — Cursor equivalent of `.github/prompts/` + `.github/chatmodes/`
+- `AGENTS.md` — Cursor equivalent of `.github/copilot-instructions.md`
 - `.vscode/` — VS Code settings for Python development
 - `README.md` — This file
 
@@ -51,7 +53,7 @@ This project provides a set of best practices, coding rules, and prompt instruct
 
 A **chatmode** is a configuration file (in `.github/chatmodes/`) that defines how Copilot or another AI assistant should behave in a specific context or workflow. For example, the `architect` chatmode makes the AI act as an experienced architect and technical lead, focusing on planning, documentation, and Markdown-only outputs. Chatmodes can set the tone, priorities, and constraints for the AI during a session or project.
 
-A **meta-chatmode** is a special chatmode file (e.g., `meta-chatmode.instructions.md`) that defines how to write, structure, and validate other chatmode files. Meta-chatmodes ensure that all chatmodes follow a consistent format and best practices across the repository. They specify the required file structure, naming conventions, expected behavior, and validation checklist for chatmode files.
+Chatmode conventions (required file structure, naming, and expected behavior) are documented in [CONTRIBUTING.md](CONTRIBUTING.md) rather than in a dedicated meta-chatmode file.
 
 ## 📏 What is an instruction?
 

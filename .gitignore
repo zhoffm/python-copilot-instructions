@@ -43,11 +43,6 @@ htmlcov/
 .DS_Store
 Thumbs.db
 
-# Mypy
-.mypy_cache/
-.dmypy.json
-dmypy.json
-
 # Ruff
 .ruff_cache/
 

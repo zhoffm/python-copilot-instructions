@@ -6,7 +6,7 @@ description: "Require uv for running Python tools, scripts, and dependency manag
 
 ## Overview
 
-This project manages its Python environment and dependencies with [`uv`](https://docs.astral.sh/uv/). Every Python tool (`pytest`, `ruff`, `mypy`, `ty`, `black`, `uvicorn`, `pre-commit`, etc.) and every Python script must be run through `uv`, either directly or via an activated `uv`-managed virtual environment.
+This project manages its Python environment and dependencies with [`uv`](https://docs.astral.sh/uv/). Every Python tool (`pytest`, `ruff`, `ty`, `uvicorn`, `pre-commit`, etc.) and every Python script must be run through `uv`, either directly or via an activated `uv`-managed virtual environment.
 
 ## Allowed Ways to Run Tools
 
@@ -17,7 +17,8 @@ Only two invocation patterns are acceptable:
    ```bash
    uv run pytest
    uv run ruff check --fix .
-   uv run mypy src/
+   uv run ruff format .
+   uv run ty check src/
    uv run uvicorn api.main:app --reload
    uv run python script.py
    ```
@@ -28,7 +29,8 @@ Only two invocation patterns are acceptable:
    source .venv/bin/activate  # On Windows: .venv\Scripts\activate
    pytest
    ruff check --fix .
-   mypy src/
+   ruff format .
+   ty check src/
    ```
 
 ## Forbidden Patterns

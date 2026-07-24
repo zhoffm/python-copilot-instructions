@@ -2,7 +2,7 @@
 
 ## Overview
 
-This prompt helps you set up pre-commit hooks for Python projects with black, ruff, mypy, and pytest.
+This prompt helps you set up pre-commit hooks for Python projects with ruff (lint + format), ty, and pytest.
 
 All commands use `uv` per [Python Tooling Execution](../rules/python-tooling-execution.mdc) — never `pip install` or `python -m`.
 
@@ -27,24 +27,17 @@ repos:
       - id: check-added-large-files
       - id: check-merge-conflict
 
-  - repo: https://github.com/psf/black
-    rev: 23.12.1
-    hooks:
-      - id: black
-        language_version: python3.11
-
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.1.9
+    rev: v0.15.22
     hooks:
-      - id: ruff
+      - id: ruff-check
         args: [--fix]
+      - id: ruff-format
 
-  - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.7.1
+  - repo: https://github.com/astral-sh/ty-pre-commit
+    rev: v0.0.56
     hooks:
-      - id: mypy
-        additional_dependencies: [types-all]
-        args: [--ignore-missing-imports]
+      - id: ty
 
   - repo: local
     hooks:
@@ -78,26 +71,9 @@ uv run pre-commit run
 ### pyproject.toml
 
 ```toml
-[tool.black]
-line-length = 100
-target-version = ['py311']
-include = '\.pyi?$'
-extend-exclude = '''
-/(
-  # directories
-  \.eggs
-  | \.git
-  | \.mypy_cache
-  | \.tox
-  | \.venv
-  | build
-  | dist
-)/
-'''
-
 [tool.ruff]
 line-length = 100
-target-version = "py311"
+target-version = "py314"
 select = [
     "E",  # pycodestyle errors
     "W",  # pycodestyle warnings
@@ -111,14 +87,13 @@ select = [
 ignore = []
 fixable = ["ALL"]
 
-[tool.mypy]
-python_version = "3.11"
-warn_return_any = true
-warn_unused_configs = true
-disallow_untyped_defs = true
-disallow_incomplete_defs = true
-check_untyped_defs = true
-no_implicit_optional = true
+# Note: ty's rule set doesn't map 1:1 to mypy's flags; `all = "error"` is the
+# closest strict-equivalent to the old disallow_untyped_defs/warn_* settings.
+[tool.ty.environment]
+python-version = "3.14"
+
+[tool.ty.rules]
+all = "error"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -141,9 +116,9 @@ After setup, hooks will run automatically on `git commit`:
 git add .
 git commit -m "feat: add order processing"
 # Hooks run automatically:
-# - Format with black
-# - Lint with ruff
-# - Type check with mypy
+# - Lint with ruff check
+# - Format with ruff format
+# - Type check with ty
 # - Run pytest
 ```
 

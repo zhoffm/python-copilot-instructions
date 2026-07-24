@@ -6,7 +6,7 @@
 copilot-instructions/
 ├── .github/
 │   ├── copilot-instructions.md      # Main Copilot configuration
-│   ├── instructions/                # Coding rules and standards (9 files)
+│   ├── instructions/                # Coding rules and standards (10 files)
 │   │   ├── clean-architecture.instructions.md
 │   │   ├── coding-style-python.instructions.md
 │   │   ├── conventional-commits.instructions.md
@@ -29,6 +29,10 @@ copilot-instructions/
 │       ├── tdd-green.chatmode.md                     # NEW: TDD implementation phase
 │       ├── tdd-red.chatmode.md                       # NEW: TDD test-first phase
 │       └── tdd-refactor.chatmode.md                  # NEW: TDD cleanup phase
+├── .cursor/                          # Cursor equivalent of .github/ (see "Cursor Support" below)
+│   ├── rules/                        # Mirrors .github/instructions/ (9 .mdc files)
+│   └── commands/                     # Mirrors .github/prompts/ + .github/chatmodes/ (10 files)
+├── AGENTS.md                         # Cursor equivalent of copilot-instructions.md
 ├── .vscode/
 │   ├── settings.json                # Python development settings
 │   └── extensions.json              # Recommended extensions
@@ -60,18 +64,19 @@ Located in `.github/instructions/`, these define **always-active** coding rules:
 
 - **clean-architecture.instructions.md**: Layer separation (Domain, Application, Infrastructure)
 - **domain-driven-design.instructions.md**: DDD patterns (Entities, Value Objects, Aggregates)
-- **coding-style-python.instructions.md**: PEP 8, type hints, Black, Ruff
+- **coding-style-python.instructions.md**: PEP 8, type hints, Ruff (lint + format)
 - **unit-and-integration-tests.instructions.md**: pytest best practices
 - **object-calisthenics.instructions.md**: OOP design rules
 - **conventional-commits.instructions.md**: Commit message format
 - **follow-up-question.instructions.md**: AI asks questions before generating code
 - **python-tooling-execution.instructions.md**: Run every tool via `uv run <tool>` or an activated `uv`-managed venv — never `pip install` or `python -m <tool>`
+- **security-and-owasp.instructions.md**: OWASP Top 10 secure coding practices for Python
 
 ### 3. Prompts
 
 Located in `.github/prompts/`, these are **reusable templates**:
 
-- **pre-commit-python.prompt.md**: Set up pre-commit hooks with Black, Ruff, mypy, pytest
+- **pre-commit-python.prompt.md**: Set up pre-commit hooks with Ruff, ty, pytest
 - **fastapi-setup.prompt.md**: Create FastAPI application structure
 
 Use prompts in Copilot Chat:
@@ -93,12 +98,23 @@ Activate in Copilot Chat:
 /mode architect
 ```
 
+### 5. Cursor Support
+
+Every file under `.github/` has a 1:1 equivalent under `.cursor/` (and `AGENTS.md` mirrors `copilot-instructions.md`), so Cursor users get the exact same rules, prompts, and personas:
+
+- `.github/instructions/*.instructions.md` ↔ `.cursor/rules/*.mdc`
+- `.github/prompts/*.prompt.md` ↔ `.cursor/commands/*.md`
+- `.github/chatmodes/*.chatmode.md` ↔ `.cursor/commands/*.md`
+- `.github/copilot-instructions.md` ↔ `AGENTS.md`
+
+Cursor rules use `globs`/`alwaysApply` frontmatter instead of Copilot's `applyTo`, and Cursor commands are invoked with `/command-name` instead of `@workspace Use the ... prompt`. When adding a new instruction, prompt, or chatmode, add the matching Cursor rule/command in the same change (see [CONTRIBUTING.md](CONTRIBUTING.md)).
+
 ## Key Features
 
 ### Python-Specific Adaptations
 
 - ✅ **pytest** instead of xUnit/NUnit
-- ✅ **Black + Ruff + mypy** instead of .NET formatters
+- ✅ **Ruff (lint + format) + ty** instead of .NET formatters
 - ✅ **FastAPI** examples instead of ASP.NET
 - ✅ **Type hints** everywhere
 - ✅ **Dataclasses** and **Pydantic** for models
@@ -113,7 +129,7 @@ The main `.github/copilot-instructions.md` enforces:
 1. Consult relevant instruction files
 2. Write tests FIRST (TDD)
 3. Run `uv run pytest` to verify
-4. Fix linting errors (Ruff, Black, mypy) via `uv run <tool>`
+4. Fix linting/formatting errors (Ruff) and type errors (ty) via `uv run <tool>`
 5. Check coverage (`uv run pytest --cov`)
 
 ## Example Workflow
@@ -133,7 +149,7 @@ The main `.github/copilot-instructions.md` enforces:
    - Use case implementation
    - Repository interface
 6. **Copilot runs** `uv run pytest` automatically
-7. **Copilot checks** Black/Ruff/mypy via `uv run <tool>`
+7. **Copilot checks** Ruff/ty via `uv run <tool>`
 
 ## Customization
 
@@ -168,9 +184,9 @@ uv run pytest -v --tb=short      # Verbose with short traceback
 ### Format Code
 
 ```bash
-uv run black .                   # Format all files
+uv run ruff format .             # Format all files
 uv run ruff check --fix .        # Lint and auto-fix
-uv run mypy src/                 # Type checking
+uv run ty check src/             # Type checking
 ```
 
 ### Pre-commit

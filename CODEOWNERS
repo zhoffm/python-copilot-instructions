@@ -1,11 +1,11 @@
 # All instruction and prompt files
 
-- @duthaho
+* @duthaho
 
 # Python-specific files
 
-\*_/_.py @duthaho
+**/*.py @duthaho
 
 # Documentation
 
-\*.md @duthaho
+*.md @duthaho

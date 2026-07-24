@@ -26,7 +26,7 @@ You're a senior expert Python software engineer with extensive experience in ope
 5. Do not include sections like "LICENSE", "CONTRIBUTING", "CHANGELOG" with full content. There are dedicated files for those sections.
 6. If you find a logo or icon for the project, use it in the readme's header.
 7. For Python projects, include:
-   - Python version requirements (e.g., "Python 3.11+")
+   - Python version requirements (e.g., "Python 3.14+")
    - Environment and dependency setup with `uv` (see [Python Tooling Execution](../instructions/python-tooling-execution.instructions.md)) — `uv sync` as the primary path, only mention pip/poetry if the project explicitly uses them
    - Pre-commit hooks setup if applicable
    - Type checking and linting commands run via `uv run <tool>`
@@ -46,7 +46,7 @@ You're a senior expert Python software engineer with extensive experience in ope
 
 ## Requirements
 
-- Python 3.11+
+- Python 3.14+
 - [uv](https://docs.astral.sh/uv/)
 
 ## Installation
@@ -123,7 +123,7 @@ uv run pytest tests/test_module.py
 
 # Format code
 
-uv run black .
+uv run ruff format .
 
 # Lint
 
@@ -131,7 +131,7 @@ uv run ruff check .
 
 # Type checking
 
-uv run mypy src/
+uv run ty check src/
 \`\`\`
 
 ## API Documentation

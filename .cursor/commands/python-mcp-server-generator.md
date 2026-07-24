@@ -202,7 +202,7 @@ mcp-server/
 [project]
 name = "mcp-server-example"
 version = "0.1.0"
-requires-python = ">=3.10"
+requires-python = ">=3.14"
 dependencies = [
     "mcp[cli]>=1.0.0",
     "pydantic>=2.0.0",
@@ -212,9 +212,8 @@ dependencies = [
 dev = [
     "pytest>=7.0.0",
     "pytest-asyncio>=0.21.0",
-    "black>=23.0.0",
     "ruff>=0.1.0",
-    "mypy>=1.0.0",
+    "ty",
 ]
 ```
 

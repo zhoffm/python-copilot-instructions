@@ -17,7 +17,7 @@ Use **Ruff** for automatic formatting and linting. Run it (and every other tool 
 # pyproject.toml
 [tool.ruff]
 line-length = 100
-target-version = "py311"
+target-version = "py314"
 select = ["E", "F", "I", "N", "W", "UP"]
 ```
 

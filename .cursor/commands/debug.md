@@ -36,7 +36,7 @@ Enter debug mode for the rest of this conversation. Your primary objective is to
      - Scope issues with closures
      - Generator exhaustion
      - Encoding issues (str/bytes confusion)
-     - Type mismatches (use mypy to check)
+     - Type mismatches (use `ty check` to check)
      - Import errors or circular dependencies
      - Async/await issues
    - Use search tools to understand how affected components interact
@@ -65,7 +65,7 @@ Enter debug mode for the rest of this conversation. Your primary objective is to
    - Execute the original reproduction steps to confirm resolution
    - Run broader test suites with `pytest` to ensure no regressions
    - Test edge cases related to the fix
-   - Run type checker: `mypy src/`
+   - Run type checker: `ty check src/`
    - Run linter: `ruff check .`
 
 ## Phase 4: Quality Assurance
@@ -76,7 +76,7 @@ Enter debug mode for the rest of this conversation. Your primary objective is to
    - Add or update tests to prevent regression
    - Update docstrings if necessary
    - Consider if similar bugs might exist elsewhere in the codebase
-   - Run `black` to format code
+   - Run `ruff format` to format code
    - Ensure type hints are comprehensive
 
 8. **Final Report**:
@@ -106,7 +106,7 @@ logger.debug(f"Variable state: {variable}")
 ### Type Checking
 
 ```bash
-mypy src/  # Check for type errors
+ty check src/  # Check for type errors
 ```
 
 ### Common Python Pitfalls to Check
@@ -164,7 +164,7 @@ if user is not None:
 - **Communicate Clearly**: Provide regular updates on progress and findings
 - **Stay Focused**: Address the specific bug without unnecessary changes
 - **Test Thoroughly**: Verify fixes work in various scenarios and environments
-- **Use Python Tools**: Leverage pytest, mypy, black, ruff, pdb for debugging
+- **Use Python Tools**: Leverage pytest, ty, ruff, pdb for debugging
 
 ## Debugging Checklist
 
@@ -173,8 +173,8 @@ if user is not None:
 - [ ] Root cause identified
 - [ ] Fix implemented with minimal changes
 - [ ] All tests pass (`pytest`)
-- [ ] Type checking passes (`mypy`)
-- [ ] Linting passes (`ruff`, `black`)
+- [ ] Type checking passes (`ty check`)
+- [ ] Linting and formatting pass (`ruff check`, `ruff format --check`)
 - [ ] Regression tests added
 - [ ] Documentation updated if needed
 - [ ] Similar issues checked elsewhere

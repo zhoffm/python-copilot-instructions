@@ -51,7 +51,7 @@ Clean up code, apply security best practices, and enhance design whilst keeping 
 
 ### Python Best Practices
 
-- **Type hints** - Add comprehensive type hints with mypy validation
+- **Type hints** - Add comprehensive type hints with ty validation
 - **Modern Python features** - Use dataclasses, pattern matching (3.10+), type aliases
 - **Memory efficiency** - Consider generators, context managers for resource management
 - **Exception handling** - Use specific exception types, create custom exceptions for domain errors
@@ -76,7 +76,7 @@ Clean up code, apply security best practices, and enhance design whilst keeping 
 4. **Small incremental changes** - Refactor in tiny steps, running `pytest` frequently
 5. **Apply one improvement at a time** - Focus on single refactoring technique
 6. **Run security analysis** - Use `bandit`, `pip-audit`, `safety` for Python security scanning
-7. **Run code quality checks** - Use `ruff`, `black`, `mypy` to ensure code quality
+7. **Run code quality checks** - Use `ruff` (lint + format), `ty` to ensure code quality
 8. **Update issue** - Comment on final implementation and close issue if complete
 
 ## Example Refactoring
@@ -141,7 +141,7 @@ class OrderProcessor:
 - [ ] Performance considerations applied
 - [ ] All tests remain green (`pytest` passes)
 - [ ] Code coverage maintained or improved (`pytest --cov`)
-- [ ] Type hints added and mypy passes
-- [ ] Linting passes (Black, Ruff)
+- [ ] Type hints added and ty passes
+- [ ] Linting and formatting pass (Ruff)
 - [ ] Issue marked as complete or follow-up issues created
 - [ ] Documentation updated as specified in issue
