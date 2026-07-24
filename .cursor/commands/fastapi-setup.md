@@ -1,7 +1,3 @@
----
-description: "Generate FastAPI application with best practices"
----
-
 # FastAPI Application Setup
 
 ## Overview
@@ -251,7 +247,7 @@ uvicorn api.main:app --host 0.0.0.0 --port 8000 --workers 4
 ## Environment Variables
 
 Never hardcode secrets or commit real credentials. Load them from environment
-variables via `.env` (see [security-and-owasp.instructions.md](../instructions/security-and-owasp.instructions.md))
+variables via `.env` (see [security-and-owasp.mdc](../rules/security-and-owasp.mdc))
 and make sure `.env` is listed in `.gitignore`.
 
 ```python

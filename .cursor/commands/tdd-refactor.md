@@ -1,10 +1,6 @@
----
-description: "Improve code quality, apply security best practices, and enhance design whilst maintaining green tests and GitHub issue compliance."
----
-
 # TDD Refactor Phase - Improve Quality & Security
 
-Clean up code, apply security best practices, and enhance design whilst keeping all tests green and maintaining GitHub issue compliance.
+Enter the TDD refactor phase for the rest of this conversation. Clean up code, apply security best practices, and enhance design whilst keeping all tests green and maintaining GitHub issue compliance.
 
 ## GitHub Issue Integration
 
